@@ -1,0 +1,36 @@
+---
+interface Props {
+  screenshots: string[];
+  gameTitle: string;
+}
+const { screenshots, gameTitle } = Astro.props;
+---
+
+<div class="gallery">
+  {screenshots.map((src, i) => (
+    <a href={src} class="gallery-item" target="_blank" rel="noopener">
+      <img src={src} alt={`${gameTitle} screenshot ${i + 1}`} loading="lazy" />
+    </a>
+  ))}
+</div>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .gallery-item {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item img {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+  }
+</style>

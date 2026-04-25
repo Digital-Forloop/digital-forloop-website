@@ -1,0 +1,104 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoreButtons from '../../components/StoreButtons.astro';
+import ScreenshotGallery from '../../components/ScreenshotGallery.astro';
+import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+
+export async function getStaticPaths() {
+  const games = await getCollection('games');
+  return games.map((game) => ({
+    params: { slug: game.id },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const { Content } = await render(game);
+---
+
+<BaseLayout title={`${game.data.title} — Your Studio`} description={game.data.tagline}>
+  <article class="game-page">
+    <header class="game-header">
+      <img src={game.data.icon} alt={game.data.title} class="game-icon" />
+      <div>
+        <h1>{game.data.title}</h1>
+        <p class="tagline">{game.data.tagline}</p>
+        <StoreButtons
+          appStore={game.data.storeLinks.appStore}
+          playStore={game.data.storeLinks.playStore}
+        />
+      </div>
+    </header>
+
+    <YouTubeEmbed videoId={game.data.youtubeId} title={game.data.title} />
+
+    <section class="description">
+      <h2>About</h2>
+      <p>{game.data.description}</p>
+      <Content />
+    </section>
+
+    <section>
+      <h2>Screenshots</h2>
+      <ScreenshotGallery
+        screenshots={game.data.screenshots}
+        gameTitle={game.data.title}
+      />
+    </section>
+
+    <section class="press">
+      <h2>Press</h2>
+      <p>
+        Writing about {game.data.title}? Download our press kit with
+        logos, screenshots, and key art.
+      </p>
+      <a href={game.data.pressPackUrl} class="press-link" target="_blank" rel="noopener">
+        Download Press Kit →
+      </a>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .game-page { padding: 2rem 0; }
+  .game-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .game-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+  }
+  .game-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .tagline {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  section { margin: 3rem 0; }
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .description p {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+  .press-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #f0f0f0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>
