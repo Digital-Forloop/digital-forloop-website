@@ -8,29 +8,175 @@ const { screenshots, gameTitle } = Astro.props;
 
 <div class="gallery">
   {screenshots.map((src, i) => (
-    <a href={src} class="gallery-item" target="_blank" rel="noopener">
+    <button class="gallery-item" data-src={src} data-index={i} type="button">
       <img src={src} alt={`${gameTitle} screenshot ${i + 1}`} loading="lazy" />
-    </a>
+    </button>
   ))}
 </div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous">‹</button>
+  <img class="lightbox-image" id="lightbox-image" alt="" />
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next">›</button>
+</div>
+
+<script define:vars={{ screenshots }}>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-image');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    lightboxImg.src = screenshots[index];
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + screenshots.length) % screenshots.length;
+    lightboxImg.src = screenshots[currentIndex];
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % screenshots.length;
+    lightboxImg.src = screenshots[currentIndex];
+  }
+
+  document.querySelectorAll('.gallery-item').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      openLightbox(parseInt(btn.dataset.index));
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+</script>
 
 <style>
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
     margin: 2rem 0;
   }
+
   .gallery-item {
-    display: block;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
     overflow: hidden;
-    border-radius: 8px;
-    transition: transform 0.2s ease;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .gallery-item:hover { transform: scale(1.02); }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
   .gallery-item img {
     width: 100%;
     aspect-ratio: 9 / 16;
     object-fit: cover;
+    display: block;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .lightbox-close,
+  .lightbox-nav {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .lightbox-close {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+
+  @media (max-width: 600px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .lightbox-nav {
+      width: 44px;
+      height: 44px;
+      font-size: 2rem;
+    }
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
   }
 </style>
