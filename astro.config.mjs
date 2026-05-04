@@ -3,6 +3,6 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://digital-forloop-website.vercel.app',
+  site: 'https://digitalforloop.com',
   integrations: [sitemap()],
 });
