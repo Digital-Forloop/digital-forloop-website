@@ -47,6 +47,19 @@ const { Content } = await render(game);
       />
     </section>
 
+    <section class="community">
+      <h2>Join the Community</h2>
+      <p>
+        We build {game.data.title} with our players. Join our Discord to share feedback,
+        vote on upcoming features, report bugs, and be part of shaping the game's future.
+        Everyone is welcome.
+      </p>
+      <a href="https://discord.gg/yqCPvN6m" class="discord-btn" target="_blank" rel="noopener">
+        <img src="/badges/discord.svg" alt="Discord" class="discord-logo" />
+        Join our Discord
+      </a>
+    </section>
+
     <section class="press">
       <h2>Press</h2>
       <p>
@@ -101,4 +114,25 @@ const { Content } = await render(game);
     text-decoration: none;
     font-weight: 600;
   }
+  .community p {
+    font-size: 1.125rem;
+    color: #444;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+  }
+  .discord-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.75rem 1.5rem;
+    background: #5865F2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: opacity 0.15s ease;
+  }
+  .discord-btn:hover { opacity: 0.9; color: white; }
+  .discord-logo { height: 22px; width: auto; filter: brightness(0) invert(1); }
 </style>
