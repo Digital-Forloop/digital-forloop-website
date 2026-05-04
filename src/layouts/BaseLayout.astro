@@ -32,6 +32,9 @@ const { title, description = "Indie mobile games studio" } = Astro.props;
         71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ<br />
         Email: info at digitalforloop dot com
       </p>
+      <p class="footer-links">
+        <a href="/terms">Terms &amp; Conditions</a>
+      </p>
     </footer>
 
     <style is:global>
@@ -70,6 +73,13 @@ const { title, description = "Indie mobile games studio" } = Astro.props;
         font-size: 0.75rem;
         color: #999;
         line-height: 1.6;
+      }
+      footer .footer-links {
+        margin-top: 0.75rem;
+        font-size: 0.75rem;
+      }
+      footer .footer-links a {
+        color: #999;
       }
       a { color: #0066cc; }
       img { max-width: 100%; height: auto; display: block; }
