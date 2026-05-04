@@ -29,6 +29,7 @@ releaseDate: 2025-11-12
 - **Training** — Run positional training sessions for goalkeepers, defenders, midfielders, and forwards. Add specialist drills for free kicks and penalties.
 - **Tactical formations** — Build your team shape using 10 different formations. Drag, drop, and rearrange your starting eleven before kick-off.
 - **Stadium & finances** — Expand your stadium capacity, grow matchday revenue, and keep the books balanced as you climb the divisions.
-- **Kit customisation** — Design your home and goalkeeper kits from the club shop. Make your team look the part.
+- **Kit shop** — Browse and buy ready-made home and goalkeeper kits, or use the kit editor to design your own from scratch.
+- **Player shop** — Pick up players from the shop, or use the player editor to build a fully custom player of your own.
 - **Player ratings & stats** — Review individual match ratings, season stats, and career records to make informed decisions in the transfer window.
 - **Medical centre** — Manage player fitness and injuries to keep your squad ready for the next fixture.
