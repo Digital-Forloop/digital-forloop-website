@@ -1,0 +1,399 @@
+---
+---
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <div class="cookie-banner-inner">
+    <p>We use cookies to improve your experience, analyse site usage, and serve personalised content. See our <a href="/privacy">Privacy Policy</a> for details.</p>
+    <div class="cookie-banner-actions">
+      <button id="cookie-manage" class="btn-outline">Manage Preferences</button>
+      <button id="cookie-reject" class="btn-outline">Reject All</button>
+      <button id="cookie-accept" class="btn-primary">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences Modal -->
+<div id="cookie-modal" class="cookie-modal" hidden>
+  <div class="cookie-modal-box">
+    <div class="cookie-modal-header">
+      <h2>Cookie Preferences</h2>
+      <button id="cookie-modal-close" class="modal-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="cookie-modal-body">
+      <p class="cookie-intro">You may withdraw your consent at any time by selecting 'Manage Preferences' and updating your preferences. Additionally, most browsers allow you to block or delete cookies via settings.</p>
+
+      <!-- Strictly Necessary -->
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div>
+            <h3>Strictly Necessary Cookies</h3>
+            <p>Required for the site to function properly.</p>
+          </div>
+          <span class="always-active">Always Active</span>
+        </div>
+        <p class="cookie-detail">These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which essentially amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work.</p>
+      </div>
+
+      <!-- Functional -->
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div>
+            <h3>Functional Cookies</h3>
+            <p>Enables enhanced features and personalisation.</p>
+          </div>
+          <label class="toggle" aria-label="Functional cookies">
+            <input type="checkbox" id="pref-functional" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <p class="cookie-detail">These cookies enable the website to provide enhanced functionality and personalisation. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.</p>
+      </div>
+
+      <!-- Performance -->
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div>
+            <h3>Performance Cookies</h3>
+            <p>Helps us analyse site usage and improve performance.</p>
+          </div>
+          <label class="toggle" aria-label="Performance cookies">
+            <input type="checkbox" id="pref-performance" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <p class="cookie-detail">These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies, we will not know when you have visited our site, and will not be able to monitor its performance.</p>
+      </div>
+
+      <!-- Targeting -->
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div>
+            <h3>Targeting Cookies</h3>
+            <p>Supports personalised advertising and content based on your activity.</p>
+          </div>
+          <label class="toggle" aria-label="Targeting cookies">
+            <input type="checkbox" id="pref-targeting" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <p class="cookie-detail">These cookies may be set through our site by our advertising partners. They may be used by those companies to collect data from videos embedded in websites and to display targeted advertising across a broad range of websites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.</p>
+      </div>
+
+      <!-- Browser instructions -->
+      <div class="cookie-browsers">
+        <h3>Managing cookies in your browser</h3>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+          <li><a href="https://support.microsoft.com/en-gb/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener">Microsoft Internet Explorer</a></li>
+          <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+          <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari (macOS)</a></li>
+          <li><a href="https://support.apple.com/en-gb/HT201265" target="_blank" rel="noopener">Safari (iOS)</a></li>
+          <li><a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+          <li><a href="https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DAndroid" target="_blank" rel="noopener">Android (Chrome)</a></li>
+        </ul>
+      </div>
+
+      <!-- Rights -->
+      <div class="cookie-rights">
+        <h3>Your rights</h3>
+        <p>If you are located in the UK or EU, you have the right to:</p>
+        <ul>
+          <li>Access, correct, or delete your personal data.</li>
+          <li>Object to or restrict certain processing.</li>
+          <li>Lodge a complaint with the UK Information Commissioner's Office or your local data protection authority.</li>
+        </ul>
+        <p>You may contact us at <a href="mailto:contact@digitalforloop.com">contact@digitalforloop.com</a> if you have any requests pertaining to our use of cookies.</p>
+      </div>
+    </div>
+
+    <div class="cookie-modal-footer">
+      <button id="cookie-reject-modal" class="btn-outline">Reject All</button>
+      <button id="cookie-save" class="btn-primary">Save Preferences</button>
+      <button id="cookie-accept-modal" class="btn-primary">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'df_cookie_consent';
+
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch { return null; }
+  }
+
+  function saveConsent(prefs) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...prefs, timestamp: Date.now() }));
+  }
+
+  function hideBanner() {
+    document.getElementById('cookie-banner')!.hidden = true;
+  }
+
+  function hideModal() {
+    document.getElementById('cookie-modal')!.hidden = true;
+  }
+
+  function showModal() {
+    const consent = getConsent();
+    (document.getElementById('pref-functional') as HTMLInputElement).checked = consent?.functional ?? false;
+    (document.getElementById('pref-performance') as HTMLInputElement).checked = consent?.performance ?? false;
+    (document.getElementById('pref-targeting') as HTMLInputElement).checked = consent?.targeting ?? false;
+    document.getElementById('cookie-modal')!.hidden = false;
+  }
+
+  function acceptAll() {
+    saveConsent({ functional: true, performance: true, targeting: true });
+    hideBanner();
+    hideModal();
+  }
+
+  function rejectAll() {
+    saveConsent({ functional: false, performance: false, targeting: false });
+    hideBanner();
+    hideModal();
+  }
+
+  function savePrefs() {
+    saveConsent({
+      functional: (document.getElementById('pref-functional') as HTMLInputElement).checked,
+      performance: (document.getElementById('pref-performance') as HTMLInputElement).checked,
+      targeting: (document.getElementById('pref-targeting') as HTMLInputElement).checked,
+    });
+    hideBanner();
+    hideModal();
+  }
+
+  // Show banner if no consent recorded
+  if (!getConsent()) {
+    document.getElementById('cookie-banner')!.hidden = false;
+  }
+
+  document.getElementById('cookie-accept')!.addEventListener('click', acceptAll);
+  document.getElementById('cookie-reject')!.addEventListener('click', rejectAll);
+  document.getElementById('cookie-manage')!.addEventListener('click', showModal);
+  document.getElementById('cookie-accept-modal')!.addEventListener('click', acceptAll);
+  document.getElementById('cookie-reject-modal')!.addEventListener('click', rejectAll);
+  document.getElementById('cookie-save')!.addEventListener('click', savePrefs);
+  document.getElementById('cookie-modal-close')!.addEventListener('click', hideModal);
+  document.getElementById('cookie-modal')!.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) hideModal();
+  });
+</script>
+
+<style>
+  /* Banner */
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e5e5e5;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+    z-index: 9999;
+    padding: 1.25rem 2rem;
+  }
+  .cookie-banner-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .cookie-banner-inner p {
+    flex: 1;
+    min-width: 200px;
+    font-size: 0.9rem;
+    color: #444;
+    margin: 0;
+  }
+  .cookie-banner-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  /* Modal */
+  .cookie-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .cookie-modal[hidden] { display: none; }
+  .cookie-modal-box {
+    background: white;
+    border-radius: 12px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .cookie-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  .cookie-modal-header h2 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .cookie-modal-body {
+    overflow-y: auto;
+    padding: 1.5rem;
+    flex: 1;
+  }
+  .cookie-intro {
+    font-size: 0.875rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Cookie category */
+  .cookie-category {
+    border-top: 1px solid #eee;
+    padding: 1.25rem 0;
+  }
+  .cookie-category-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .cookie-category-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .cookie-category-header > div > p {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+  }
+  .cookie-detail {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .always-active {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #2e7d32;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+
+  /* Toggle */
+  .toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: #ccc;
+    border-radius: 24px;
+    transition: 0.2s;
+  }
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+  .toggle input:checked + .toggle-slider { background: #1a1a1a; }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+  /* Browser & rights */
+  .cookie-browsers, .cookie-rights {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #eee;
+  }
+  .cookie-browsers h3, .cookie-rights h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .cookie-browsers ul, .cookie-rights ul {
+    margin: 0.5rem 0 0.75rem 1.25rem;
+  }
+  .cookie-browsers li, .cookie-rights li {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+  }
+  .cookie-rights p {
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Modal footer */
+  .cookie-modal-footer {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    padding: 0.6rem 1.25rem;
+    background: #1a1a1a;
+    color: white;
+    border: 2px solid #1a1a1a;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline {
+    padding: 0.6rem 1.25rem;
+    background: transparent;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-outline:hover { background: #f5f5f5; }
+</style>

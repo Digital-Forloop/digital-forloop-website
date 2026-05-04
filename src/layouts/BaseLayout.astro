@@ -1,4 +1,5 @@
 ---
+import CookieBanner from '../components/CookieBanner.astro';
 interface Props {
   title: string;
   description?: string;
@@ -55,6 +56,8 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
         <a href="/terms">Terms &amp; Conditions</a>
         &nbsp;&middot;&nbsp;
         <a href="/privacy">Privacy Policy</a>
+        &nbsp;&middot;&nbsp;
+        <button id="footer-manage-cookies" class="footer-cookie-btn">Manage Preferences</button>
       </p>
     </footer>
 
@@ -119,8 +122,25 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
       footer .footer-links a {
         color: #999;
       }
+      .footer-cookie-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 0.75rem;
+        cursor: pointer;
+        padding: 0;
+        font-family: inherit;
+      }
+      .footer-cookie-btn:hover { color: #666; }
       a { color: #0066cc; }
       img { max-width: 100%; height: auto; display: block; }
     </style>
+    <CookieBanner />
+    <script>
+      document.getElementById('footer-manage-cookies')?.addEventListener('click', () => {
+        document.getElementById('cookie-modal')!.hidden = false;
+        document.getElementById('cookie-banner')!.hidden = true;
+      });
+    </script>
   </body>
 </html>
