@@ -1,7 +1,7 @@
 ---
 title: "Pixel Soccer Manager"
 tagline: "Build your club. Set your tactics. Rise through the divisions."
-description: "Pixel Soccer Manager is a mobile football management game where every signing, formation, and half-time call is yours to make. Start at the bottom and fight your way to the top — all wrapped in charming pixel art."
+description: "Pixel Soccer Manager is a mobile football management game where every signing, formation, and half-time call is yours to make. Start at the bottom and fight your way to the top."
 icon: "/games/pixel-soccer-manager/icon.png"
 hero: "/games/pixel-soccer-manager/screenshot-1.png"
 youtubeId: "3wMwdzxIyN0"
@@ -31,4 +31,3 @@ releaseDate: 2025-11-12
 - **Kit customisation** — Design your home and goalkeeper kits from the club shop. Make your team look the part.
 - **Player ratings & stats** — Review individual match ratings, season stats, and career records to make informed decisions in the transfer window.
 - **Medical centre** — Manage player fitness and injuries to keep your squad ready for the next fixture.
-- **Charming pixel art** — Every player, stadium, and match moment is brought to life in a lovingly crafted retro pixel style.
