@@ -14,7 +14,7 @@ const games = defineCollection({
     storeLinks: z.object({
       appStore: z.string().url().optional(),
       playStore: z.string().url().optional(),
-    }),
+    }).optional(),
     pressPackUrl: z.string().url(),
     releaseDate: z.date().optional(),
   }),

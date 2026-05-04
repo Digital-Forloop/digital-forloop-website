@@ -25,8 +25,8 @@ const { Content } = await render(game);
         <h1>{game.data.title}</h1>
         <p class="tagline">{game.data.tagline}</p>
         <StoreButtons
-          appStore={game.data.storeLinks.appStore}
-          playStore={game.data.storeLinks.playStore}
+          appStore={game.data.storeLinks?.appStore}
+          playStore={game.data.storeLinks?.playStore}
         />
       </div>
     </header>

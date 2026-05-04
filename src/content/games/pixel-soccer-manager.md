@@ -9,9 +9,10 @@ screenshots:
   - "/games/pixel-soccer-manager/screenshot-1.png"
   - "/games/pixel-soccer-manager/screenshot-2.png"
   - "/games/pixel-soccer-manager/screenshot-3.png"
-storeLinks:
-  appStore: "https://apps.apple.com/app/example/id123456"
-  playStore: "https://play.google.com/store/apps/details?id=com.example"
+# Uncomment when app is live on the stores:
+# storeLinks:
+#   appStore: ""
+#   playStore: ""
 pressPackUrl: "https://example.com/puzzle-quest-press-kit.zip"
 releaseDate: 2025-11-12
 ---
