@@ -8,13 +8,13 @@ const { appStore, playStore } = Astro.props;
 
 <div class="store-buttons">
   {appStore && (
-    <a href={appStore} class="store-btn app-store" target="_blank" rel="noopener">
-      Download on the App Store
+    <a href={appStore} target="_blank" rel="noopener" class="store-badge-link">
+      <img src="/badges/app-store.svg" alt="Download on the App Store" class="store-badge app-store-badge" />
     </a>
   )}
   {playStore && (
-    <a href={playStore} class="store-btn play-store" target="_blank" rel="noopener">
-      Get it on Google Play
+    <a href={playStore} target="_blank" rel="noopener" class="store-badge-link">
+      <img src="/badges/google-play.png" alt="Get it on Google Play" class="store-badge google-play-badge" />
     </a>
   )}
 </div>
@@ -22,19 +22,17 @@ const { appStore, playStore } = Astro.props;
 <style>
   .store-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
+    align-items: center;
     margin: 1.5rem 0;
   }
-  .store-btn {
+  .store-badge-link {
     display: inline-block;
-    padding: 0.875rem 1.5rem;
-    background: #1a1a1a;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: transform 0.15s ease;
+    transition: opacity 0.15s ease;
   }
-  .store-btn:hover { transform: translateY(-2px); }
+  .store-badge-link:hover { opacity: 0.85; }
+  .store-badge { display: block; }
+  .app-store-badge { height: 48px; width: auto; }
+  .google-play-badge { height: 71px; width: auto; }
 </style>
