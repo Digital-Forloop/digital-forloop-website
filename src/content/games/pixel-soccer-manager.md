@@ -24,7 +24,7 @@ releaseDate: 2025-11-12
 - **Transfer auction** — Sign players through a competitive auction market. Scout the world for hidden gems using deep filters: position, ability, age, value, goals, free kick rating, penalty rating, and more.
 - **Loan market** — Bring in talent on loan to plug gaps, or send fringe players out for game time.
 - **Contract negotiations** — Offer contracts, set wages, and manage your squad's commitment. Review offer history and keep your best players from walking.
-- **Player development** — Players aged 16–35 develop and decline realistically. Young prospects grow into stars; veterans lose their edge. Buy smart, sell smart.
+- **Player development** — Players develop and decline realistically. Young prospects grow into stars; veterans lose their edge. Buy smart, sell smart.
 - **Training** — Run positional training sessions for goalkeepers, defenders, midfielders, and forwards. Add specialist drills for free kicks and penalties.
 - **Tactical formations** — Build your team shape using 10 different formations. Drag, drop, and rearrange your starting eleven before kick-off.
 - **Stadium & finances** — Expand your stadium capacity, grow matchday revenue, and keep the books balanced as you climb the divisions.
