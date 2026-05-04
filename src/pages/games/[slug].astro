@@ -22,7 +22,7 @@ const { Content } = await render(game);
     <header class="game-header">
       <img src={game.data.icon} alt={game.data.title} class="game-icon" />
       <div>
-        <h1>{game.data.title}</h1>
+        <img src="/games/pixel-soccer-manager/logo-horizontal.svg" alt={game.data.title} class="game-logo" />
         <p class="tagline">{game.data.tagline}</p>
         <StoreButtons
           appStore={game.data.storeLinks?.appStore}
@@ -86,9 +86,11 @@ const { Content } = await render(game);
     height: 120px;
     border-radius: 24px;
   }
-  .game-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+  .game-logo {
+    max-width: 320px;
+    height: auto;
+    margin-bottom: 0.75rem;
+    display: block;
   }
   .tagline {
     font-size: 1.25rem;
