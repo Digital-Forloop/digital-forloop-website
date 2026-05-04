@@ -19,7 +19,7 @@ releaseDate: 2025-11-12
 
 ## Features
 
-- **Four divisions, one dream** — Start in Division 3 and earn promotion all the way to the Premier Division. Lose form and face relegation. Every season matters.
+- **Multiple divisions, one dream** — Start at the bottom and earn promotion all the way to the Premier Division. Lose form and face relegation. Every season matters.
 - **Live match engine** — Watch your tactics play out in real time. Follow live commentary, track match events, make substitutions, and adjust your formation on the fly.
 - **Transfer auction** — Sign players through a competitive auction market. Scout the world for hidden gems using deep filters: position, ability, age, value, goals, free kick rating, penalty rating, and more.
 - **Loan market** — Bring in talent on loan to plug gaps, or send fringe players out for game time.
