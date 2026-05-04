@@ -26,7 +26,7 @@ releaseDate: 2025-11-12
 - **Contract negotiations** — Offer contracts, set wages, and manage your squad's commitment. Review offer history and keep your best players from walking.
 - **Player development** — Players aged 16–35 develop and decline realistically. Young prospects grow into stars; veterans lose their edge. Buy smart, sell smart.
 - **Training** — Run positional training sessions for goalkeepers, defenders, midfielders, and forwards. Add specialist drills for free kicks and penalties.
-- **Tactical formations** — Build your shape across eight positions: GK, LB, RB, CB, LM, RM, CM, and FC. Drag, drop, and rearrange your starting eleven before kick-off.
+- **Tactical formations** — Build your team shape using 10 different formations. Drag, drop, and rearrange your starting eleven before kick-off.
 - **Stadium & finances** — Expand your stadium capacity, grow matchday revenue, and keep the books balanced as you climb the divisions.
 - **Kit customisation** — Design your home and goalkeeper kits from the club shop. Make your team look the part.
 - **Player ratings & stats** — Review individual match ratings, season stats, and career records to make informed decisions in the transfer window.
