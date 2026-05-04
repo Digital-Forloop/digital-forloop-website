@@ -1,5 +1,5 @@
 ---
-title: "Puzzle Quest"
+title: "Pixel Soccer Manager"
 tagline: "Match gems, cast spells, conquer kingdoms."
 description: "A turn-based puzzle RPG where every match triggers a battle. Build your hero, collect spells, and outwit opponents across 200+ handcrafted levels."
 icon: "/games/pixel-soccer-manager/icon.png"
