@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import appStoreBadge from '../../public/badges/app-store.svg';
+import googlePlayBadge from '../../public/badges/google-play.png';
+
 interface Props {
   appStore?: string;
   playStore?: string;
@@ -9,12 +13,12 @@ const { appStore, playStore } = Astro.props;
 <div class="store-buttons">
   {appStore && (
     <a href={appStore} target="_blank" rel="noopener" class="store-badge-link">
-      <img src="/badges/app-store.svg" alt="Download on the App Store" class="store-badge app-store-badge" />
+      <Image src={appStoreBadge} alt="Download on the App Store" class="store-badge app-store-badge" height={48} />
     </a>
   )}
   {playStore && (
     <a href={playStore} target="_blank" rel="noopener" class="store-badge-link">
-      <img src="/badges/google-play.png" alt="Get it on Google Play" class="store-badge google-play-badge" />
+      <Image src={googlePlayBadge} alt="Get it on Google Play" class="store-badge google-play-badge" height={71} />
     </a>
   )}
 </div>

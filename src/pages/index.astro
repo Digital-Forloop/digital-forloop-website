@@ -14,7 +14,7 @@ const games = await getCollection('games');
   <section class="games-grid">
     {games.map((game) => (
       <a href={`/games/${game.id}/`} class="game-card">
-        <img src={game.data.icon} alt={game.data.title} />
+        <img src={game.data.icon} alt={game.data.title} width="80" height="80" loading="lazy" decoding="async" />
         <h2>{game.data.title}</h2>
         <p>{game.data.tagline}</p>
       </a>

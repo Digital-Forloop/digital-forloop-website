@@ -9,7 +9,7 @@ const { screenshots, gameTitle } = Astro.props;
 <div class="gallery">
   {screenshots.map((src, i) => (
     <button class="gallery-item" data-src={src} data-index={i} type="button">
-      <img src={src} alt={`${gameTitle} screenshot ${i + 1}`} loading="lazy" />
+      <img src={src} alt={`${gameTitle} screenshot ${i + 1}`} loading="lazy" decoding="async" />
     </button>
   ))}
 </div>

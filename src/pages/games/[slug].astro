@@ -20,9 +20,9 @@ const { Content } = await render(game);
 <BaseLayout title={`${game.data.title} — Digital Forloop`} description={game.data.tagline} ogImage={game.data.hero}>
   <article class="game-page">
     <header class="game-header">
-      <img src={game.data.icon} alt={game.data.title} class="game-icon" />
+      <img src={game.data.icon} alt={game.data.title} class="game-icon" width="120" height="120" loading="eager" decoding="async" />
       <div>
-        <img src="/games/pixel-soccer-manager/logo-horizontal.svg" alt={game.data.title} class="game-logo" />
+        <img src="/games/pixel-soccer-manager/logo-horizontal.svg" alt={game.data.title} class="game-logo" loading="eager" decoding="async" />
         <p class="tagline">{game.data.tagline}</p>
         <StoreButtons
           appStore={game.data.storeLinks?.appStore}
@@ -54,7 +54,7 @@ const { Content } = await render(game);
         vote on upcoming features, report bugs, and be part of shaping the game's future.
       </p>
       <a href="https://discord.gg/yqCPvN6m" class="discord-btn" target="_blank" rel="noopener">
-        <img src="/badges/discord.svg" alt="Discord" class="discord-logo" />
+        <img src="/badges/discord.svg" alt="Discord" class="discord-logo" width="100" height="28" loading="lazy" decoding="async" />
         Join our Discord
       </a>
     </section>
