@@ -27,6 +27,10 @@ const { title, description = "Indie mobile games studio" } = Astro.props;
     </main>
     <footer>
       <p>&copy; {new Date().getFullYear()} Digital Forloop</p>
+      <p class="company-info">
+        DIGITAL FORLOOP LIMITED No. 15958356 &mdash; England &amp; Wales<br />
+        71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ
+      </p>
     </footer>
 
     <style is:global>
@@ -59,6 +63,12 @@ const { title, description = "Indie mobile games studio" } = Astro.props;
         text-align: center;
         color: #666;
         border-top: 1px solid #eee;
+      }
+      footer .company-info {
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        color: #999;
+        line-height: 1.6;
       }
       a { color: #0066cc; }
       img { max-width: 100%; height: auto; display: block; }
