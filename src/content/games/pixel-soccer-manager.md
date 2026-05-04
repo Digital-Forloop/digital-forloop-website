@@ -20,6 +20,7 @@ releaseDate: 2025-11-12
 ## Features
 
 - **Multiple divisions, one dream** — Start at the bottom and earn promotion all the way to the Premier Division. Lose form and face relegation. Every season matters.
+- **Cup competitions** — Fight for glory on multiple fronts. Compete in the domestic cup and the continental cup alongside your league campaign.
 - **Text-based match engine** — Like the classic managers of old, matches unfold through live commentary and match events. Make substitutions, tweak your formation, and react to the game as it happens.
 - **Transfer auction** — Sign players through a competitive auction market. Scout the world for hidden gems using deep filters: position, ability, age, value, goals, free kick rating, penalty rating, and more.
 - **Loan market** — Bring in talent on loan to plug gaps, or send fringe players out for game time.
