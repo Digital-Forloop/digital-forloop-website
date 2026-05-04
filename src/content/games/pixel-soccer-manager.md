@@ -20,7 +20,7 @@ releaseDate: 2025-11-12
 ## Features
 
 - **Multiple divisions, one dream** — Start at the bottom and earn promotion all the way to the Premier Division. Lose form and face relegation. Every season matters.
-- **Live match engine** — Watch your tactics play out in real time. Follow live commentary, track match events, make substitutions, and adjust your formation on the fly.
+- **Text-based match engine** — Like the classic managers of old, matches unfold through live commentary and match events. Make substitutions, tweak your formation, and react to the game as it happens.
 - **Transfer auction** — Sign players through a competitive auction market. Scout the world for hidden gems using deep filters: position, ability, age, value, goals, free kick rating, penalty rating, and more.
 - **Loan market** — Bring in talent on loan to plug gaps, or send fringe players out for game time.
 - **Contract negotiations** — Offer contracts, set wages, and manage your squad's commitment. Review offer history and keep your best players from walking.
