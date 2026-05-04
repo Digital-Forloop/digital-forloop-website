@@ -17,7 +17,7 @@ const { game } = Astro.props;
 const { Content } = await render(game);
 ---
 
-<BaseLayout title={`${game.data.title} — Digital Forloop`} description={game.data.tagline}>
+<BaseLayout title={`${game.data.title} — Digital Forloop`} description={game.data.tagline} ogImage={game.data.hero}>
   <article class="game-page">
     <header class="game-header">
       <img src={game.data.icon} alt={game.data.title} class="game-icon" />

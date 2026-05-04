@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://digital-forloop-website.vercel.app/sitemap-index.xml

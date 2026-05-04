@@ -2,9 +2,12 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = "Indie mobile games studio" } = Astro.props;
+const { title, description = "Indie mobile games studio", ogImage } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('/favicon-64x64.png', Astro.site).toString();
 ---
 
 <!doctype html>
@@ -16,12 +19,26 @@ const { title, description = "Indie mobile games studio" } = Astro.props;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <title>{title}</title>
   </head>
   <body>
     <header>
       <nav>
         <a href="/" class="logo">Digital Forloop</a>
+        <div class="nav-links">
+          <a href="/">Games</a>
+          <a href="/about">About</a>
+        </div>
       </nav>
     </header>
     <main>
@@ -54,12 +71,29 @@ const { title, description = "Indie mobile games studio" } = Astro.props;
         border-bottom: 1px solid #eee;
         background: white;
       }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
       .logo {
         font-weight: 700;
         font-size: 1.25rem;
         color: #1a1a1a;
         text-decoration: none;
+        margin-right: auto;
       }
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .nav-links a {
+        color: #444;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .nav-links a:hover { color: #1a1a1a; }
       main {
         max-width: 1100px;
         margin: 0 auto;
