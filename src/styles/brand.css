@@ -21,7 +21,7 @@
   --df-surface:    var(--df-cream);
   --df-surface-2:  var(--df-cream-2);
   --df-text:       var(--df-navy);
-  --df-text-muted: rgba(31, 78, 102, 0.78);
+  --df-text-muted: rgba(31, 78, 102, 0.9);
   --df-rule:       rgba(31, 78, 102, 0.16);
 
   /* Status (game tiles, etc.) */

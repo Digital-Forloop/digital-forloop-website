@@ -41,10 +41,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
       <nav>
         <a href="/" class="site-logo" aria-label="Digital Forloop">
           <span class="logo-mark" aria-hidden="true">
-            <span class="logo-bracket logo-open">[</span>
-            <span class="logo-word logo-digital"><span>d</span><span>i</span><span>g</span><span>i</span><span>t</span><span>a</span><span>l</span></span><span class="logo-word logo-forloop"><span>f</span><span>o</span><span>r</span><span>l</span><span>o</span><span>o</span><span>p</span></span>
-            <span class="logo-cursor"></span>
-            <span class="logo-bracket logo-close">]</span>
+            <span class="logo-bracket">[</span><span id="logo-typed"></span><span id="logo-cursor" class="logo-cursor"></span><span class="logo-bracket">]</span>
           </span>
         </a>
         <div class="nav-links">
@@ -117,58 +114,30 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
         font-family: var(--df-mono);
         font-size: 1.5rem;
         line-height: 1;
-        gap: 0.1em;
       }
       .logo-bracket {
         color: var(--df-navy);
         font-weight: 300;
         font-size: 1.9em;
         line-height: 1;
-        opacity: 0;
       }
-      .logo-open  { animation: dfSnapIn 1ms forwards 0ms; }
-      .logo-close { animation: dfSnapIn 1ms forwards 1280ms; }
-
-      .logo-word {
-        display: inline-flex;
+      #logo-typed {
         font-weight: 600;
         letter-spacing: var(--df-tracking-mono);
       }
-      .logo-word span { display: inline-block; opacity: 0; }
-
-      .logo-digital span { color: var(--df-navy); animation: dfSnapIn 1ms forwards; }
-      .logo-forloop span { color: var(--df-teal);  animation: dfSnapIn 1ms forwards; }
-
-      .logo-digital span:nth-child(1) { animation-delay:  80ms; }
-      .logo-digital span:nth-child(2) { animation-delay: 160ms; }
-      .logo-digital span:nth-child(3) { animation-delay: 240ms; }
-      .logo-digital span:nth-child(4) { animation-delay: 320ms; }
-      .logo-digital span:nth-child(5) { animation-delay: 400ms; }
-      .logo-digital span:nth-child(6) { animation-delay: 480ms; }
-      .logo-digital span:nth-child(7) { animation-delay: 560ms; }
-
-      .logo-forloop span:nth-child(1) { animation-delay:  640ms; }
-      .logo-forloop span:nth-child(2) { animation-delay:  720ms; }
-      .logo-forloop span:nth-child(3) { animation-delay:  800ms; }
-      .logo-forloop span:nth-child(4) { animation-delay:  880ms; }
-      .logo-forloop span:nth-child(5) { animation-delay:  960ms; }
-      .logo-forloop span:nth-child(6) { animation-delay: 1040ms; }
-      .logo-forloop span:nth-child(7) { animation-delay: 1120ms; }
-
+      #logo-typed .ch-navy { color: var(--df-navy); }
+      #logo-typed .ch-teal { color: var(--df-teal); }
       .logo-cursor {
         display: inline-block;
         width: 0.5ch;
         height: 0.9em;
         background: var(--df-teal);
-        margin-left: 2px;
-        transform: translateY(0.05em);
+        margin: 0 1px;
+        transform: translateY(0.08em);
         opacity: 0;
-        animation: dfSnapIn 1ms forwards 1200ms, dfBlink 0.9s steps(1) 1200ms infinite;
       }
-
-      @keyframes dfSnapIn {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+      .logo-cursor.blinking {
+        animation: dfBlink 0.9s steps(1) infinite;
       }
       @keyframes dfBlink {
         0%, 49% { opacity: 1; }
@@ -206,7 +175,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
       footer .company-info {
         margin-top: 0.5rem;
         font-size: var(--df-text-xs);
-        color: rgba(31, 78, 102, 0.4);
+        color: var(--df-text-muted);
         line-height: 1.8;
       }
       footer .footer-links {
@@ -214,7 +183,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
         font-size: var(--df-text-xs);
       }
       footer .footer-links a {
-        color: rgba(31, 78, 102, 0.4);
+        color: var(--df-text-muted);
         text-decoration: none;
         transition: color var(--df-dur-fast) var(--df-ease);
       }
@@ -222,7 +191,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
       .footer-cookie-btn {
         background: none;
         border: none;
-        color: rgba(31, 78, 102, 0.4);
+        color: var(--df-text-muted);
         font-size: var(--df-text-xs);
         cursor: pointer;
         padding: 0;
@@ -240,6 +209,30 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
         document.getElementById('cookie-modal')!.hidden = false;
         document.getElementById('cookie-banner')!.hidden = true;
       });
+    </script>
+    <script>
+      (() => {
+        const typed = document.getElementById('logo-typed');
+        const cursor = document.getElementById('logo-cursor');
+        if (!typed || !cursor) return;
+
+        const chars = 'digitalforloop'.split('');
+
+        // Cursor appears first
+        setTimeout(() => {
+          cursor.classList.add('blinking');
+
+          // Then type one character at a time
+          chars.forEach((ch, i) => {
+            setTimeout(() => {
+              const span = document.createElement('span');
+              span.textContent = ch;
+              span.className = i < 7 ? 'ch-navy' : 'ch-teal';
+              typed.appendChild(span);
+            }, (i + 1) * 100);
+          });
+        }, 300);
+      })();
     </script>
   </body>
 </html>
