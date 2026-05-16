@@ -104,7 +104,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
         margin: 0 auto;
       }
 
-      /* ── Animated logo ─────────────────────────────────── */
+      /* ── Animated logo (typewriter) ────────────────────── */
       .site-logo {
         display: flex;
         align-items: center;
@@ -125,40 +125,35 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
         font-size: 1.9em;
         line-height: 1;
         opacity: 0;
-        transform: scale(0.4);
       }
-      .logo-open  { animation: dfBracketIn 430ms var(--df-ease-pop) 100ms forwards; transform-origin: right center; }
-      .logo-close { animation: dfBracketIn 430ms var(--df-ease-pop) 100ms forwards; transform-origin: left center; }
+      .logo-open  { animation: dfSnapIn 1ms forwards 0ms; }
+      .logo-close { animation: dfSnapIn 1ms forwards 1280ms; }
 
       .logo-word {
         display: inline-flex;
-        overflow: hidden;
         font-weight: 600;
         letter-spacing: var(--df-tracking-mono);
       }
-      .logo-word span {
-        display: inline-block;
-        opacity: 0;
-        transform: translateY(0.25em);
-      }
-      .logo-digital span { color: var(--df-navy); animation: dfCharIn 320ms var(--df-ease) forwards; }
-      .logo-forloop span { color: var(--df-teal);  animation: dfCharIn 320ms var(--df-ease) forwards; }
+      .logo-word span { display: inline-block; opacity: 0; }
 
-      .logo-digital span:nth-child(1) { animation-delay: 480ms; }
-      .logo-digital span:nth-child(2) { animation-delay: 540ms; }
-      .logo-digital span:nth-child(3) { animation-delay: 600ms; }
-      .logo-digital span:nth-child(4) { animation-delay: 660ms; }
-      .logo-digital span:nth-child(5) { animation-delay: 720ms; }
-      .logo-digital span:nth-child(6) { animation-delay: 780ms; }
-      .logo-digital span:nth-child(7) { animation-delay: 840ms; }
+      .logo-digital span { color: var(--df-navy); animation: dfSnapIn 1ms forwards; }
+      .logo-forloop span { color: var(--df-teal);  animation: dfSnapIn 1ms forwards; }
 
-      .logo-forloop span:nth-child(1) { animation-delay: 920ms; }
-      .logo-forloop span:nth-child(2) { animation-delay: 980ms; }
-      .logo-forloop span:nth-child(3) { animation-delay: 1040ms; }
-      .logo-forloop span:nth-child(4) { animation-delay: 1100ms; }
-      .logo-forloop span:nth-child(5) { animation-delay: 1160ms; }
-      .logo-forloop span:nth-child(6) { animation-delay: 1220ms; }
-      .logo-forloop span:nth-child(7) { animation-delay: 1280ms; }
+      .logo-digital span:nth-child(1) { animation-delay:  80ms; }
+      .logo-digital span:nth-child(2) { animation-delay: 160ms; }
+      .logo-digital span:nth-child(3) { animation-delay: 240ms; }
+      .logo-digital span:nth-child(4) { animation-delay: 320ms; }
+      .logo-digital span:nth-child(5) { animation-delay: 400ms; }
+      .logo-digital span:nth-child(6) { animation-delay: 480ms; }
+      .logo-digital span:nth-child(7) { animation-delay: 560ms; }
+
+      .logo-forloop span:nth-child(1) { animation-delay:  640ms; }
+      .logo-forloop span:nth-child(2) { animation-delay:  720ms; }
+      .logo-forloop span:nth-child(3) { animation-delay:  800ms; }
+      .logo-forloop span:nth-child(4) { animation-delay:  880ms; }
+      .logo-forloop span:nth-child(5) { animation-delay:  960ms; }
+      .logo-forloop span:nth-child(6) { animation-delay: 1040ms; }
+      .logo-forloop span:nth-child(7) { animation-delay: 1120ms; }
 
       .logo-cursor {
         display: inline-block;
@@ -168,20 +163,12 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('
         margin-left: 2px;
         transform: translateY(0.05em);
         opacity: 0;
-        animation: dfCursorIn 200ms forwards 1320ms, dfBlink 0.9s steps(1) 1320ms infinite;
+        animation: dfSnapIn 1ms forwards 1200ms, dfBlink 0.9s steps(1) 1200ms infinite;
       }
 
-      @keyframes dfBracketIn {
-        0%   { opacity: 0; transform: scale(0.4); }
-        100% { opacity: 1; transform: scale(1); }
-      }
-      @keyframes dfCharIn {
-        0%   { opacity: 0; transform: translateY(0.25em); }
-        100% { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes dfCursorIn {
-        0%   { opacity: 0; }
-        100% { opacity: 1; }
+      @keyframes dfSnapIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
       }
       @keyframes dfBlink {
         0%, 49% { opacity: 1; }
