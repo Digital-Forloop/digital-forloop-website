@@ -4,43 +4,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About — Digital Forloop" description="Digital Forloop is an independent mobile games studio based in London.">
   <article class="about">
-    <h1>About Digital Forloop</h1>
+    <p class="eyebrow">about</p>
+    <h1>Digital Forloop</h1>
 
     <p>Digital Forloop is an independent mobile games studio based in London, England. We make games for iOS and Android that are built to be enjoyed — no fuss, no bloat, just games worth playing.</p>
 
     <p>Our debut title, <a href="/games/pixel-soccer-manager/">Pixel Soccer Manager</a>, is a football management game for mobile — a modern take on the classic text-based management games that many of us grew up with.</p>
-
-    <p>We build in the open and with our community. If you want to follow development, share feedback, or just talk football, come and join us on Discord.</p>
-
-    <h2>Company</h2>
-    <p>
-      Digital Forloop Limited<br />
-      Company No. 15958356<br />
-      71-75 Shelton Street, Covent Garden<br />
-      London, United Kingdom, WC2H 9JQ<br />
-      Registered in England &amp; Wales
-    </p>
   </article>
 </BaseLayout>
 
 <style>
   .about {
-    max-width: 680px;
-    padding: 3rem 0;
+    max-width: 640px;
+    padding: 4rem 0;
+  }
+  .eyebrow {
+    font-family: var(--df-mono);
+    font-size: var(--df-text-xs);
+    letter-spacing: var(--df-tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--df-teal);
+    margin-bottom: 1rem;
   }
   h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  h2 {
-    font-size: 1.25rem;
+    font-size: var(--df-text-2xl);
     font-weight: 700;
-    margin: 2rem 0 0.75rem;
+    letter-spacing: var(--df-tracking-tight);
+    color: var(--df-navy);
+    line-height: 1.05;
+    margin-bottom: 1.75rem;
   }
   p {
-    font-size: 1.125rem;
-    color: #333;
+    font-size: var(--df-text-md);
+    color: var(--df-text-muted);
     line-height: 1.7;
     margin-bottom: 1rem;
+  }
+  a {
+    color: var(--df-teal);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 </style>

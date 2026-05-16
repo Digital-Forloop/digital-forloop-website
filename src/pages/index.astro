@@ -3,18 +3,15 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const games = await getCollection('games');
+
+const statusLabel = { live: 'Live', dev: 'In dev', archived: 'Archived' };
 ---
 
 <BaseLayout title="Digital Forloop — Mobile Games">
-  <section class="hero">
-    <h1>We make mobile games.</h1>
-    <p>Indie mobile games, crafted with care.</p>
-  </section>
-
   <section class="games-grid">
     {games.map((game) => (
-      <a href={`/games/${game.id}/`} class="game-card">
-        <div class="card-screenshot">
+      <a href={`/games/${game.id}/`} class="game-tile">
+        <div class="key-art">
           <img
             src={game.data.hero}
             alt={`${game.data.title} screenshot`}
@@ -25,15 +22,37 @@ const games = await getCollection('games');
             src={game.data.icon}
             alt=""
             class="card-icon"
-            width="64"
-            height="64"
+            width="56"
+            height="56"
             loading="lazy"
             decoding="async"
           />
+          <div class="play-badge">Play →</div>
         </div>
-        <div class="card-body">
-          <h2>{game.data.title}</h2>
-          <p>{game.data.tagline}</p>
+        <div class="tile-body">
+          {game.data.status && (
+            <div class="tag-row">
+              <span class={`status-dot ${game.data.status !== 'live' ? game.data.status : ''}`}></span>
+              <span class={`status-label ${game.data.status !== 'live' ? game.data.status : ''}`}>
+                {statusLabel[game.data.status]}
+              </span>
+              {game.data.platform && (
+                <>
+                  <span class="sep">·</span>
+                  <span class="platform">{game.data.platform}</span>
+                </>
+              )}
+            </div>
+          )}
+          <h2 class="tile-name">{game.data.title}</h2>
+          <p class="tile-desc">{game.data.tagline}</p>
+          {game.data.chips && game.data.chips.length > 0 && (
+            <div class="chips">
+              {game.data.chips.map((chip) => (
+                <span class="chip">{chip}</span>
+              ))}
+            </div>
+          )}
         </div>
       </a>
     ))}
@@ -41,46 +60,44 @@ const games = await getCollection('games');
 </BaseLayout>
 
 <style>
-  .hero {
-    padding: 4rem 0;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
-  }
-  .hero p {
-    font-size: 1.25rem;
-    color: #666;
-  }
   .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.75rem;
+    padding-bottom: 3rem;
   }
-  .game-card {
-    display: block;
-    background: white;
-    border-radius: 16px;
+
+  .game-tile {
+    display: flex;
+    flex-direction: column;
+    background: var(--df-surface);
+    border: 1px solid var(--df-rule);
+    border-radius: var(--df-radius-lg);
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--df-shadow-sm);
+    transition: transform 0.18s var(--df-ease), box-shadow 0.18s var(--df-ease);
   }
-  .game-card:hover {
+  .game-tile:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    box-shadow: var(--df-shadow-lg);
   }
-  .card-screenshot {
+  .game-tile:hover .play-badge {
+    opacity: 1;
+    transform: scale(1.05);
+    background: var(--df-cream);
+    color: var(--df-navy);
+  }
+
+  .key-art {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 8 / 9;
     overflow: hidden;
-    background: #f0f0f0;
+    background: var(--df-cream-2);
   }
-  .card-screenshot > img:first-child {
+  .key-art > img:first-child {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -91,21 +108,95 @@ const games = await getCollection('games');
     position: absolute;
     bottom: 0.75rem;
     left: 0.75rem;
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
-    border: 3px solid white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    width: 56px;
+    height: 56px;
+    border-radius: var(--df-radius);
+    border: 2px solid var(--df-cream);
+    box-shadow: var(--df-shadow-sm);
   }
-  .card-body {
-    padding: 1rem 1.25rem 1.25rem;
+  .play-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    padding: 6px 12px;
+    background: rgba(244, 241, 234, 0.15);
+    color: var(--df-cream);
+    font-family: var(--df-mono);
+    font-size: var(--df-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: var(--df-radius-sm);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.18s var(--df-ease), transform 0.18s var(--df-ease-pop), background 0.18s, color 0.18s;
   }
-  .card-body h2 {
-    font-size: 1.125rem;
-    margin-bottom: 0.3rem;
+
+  .tile-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
   }
-  .card-body p {
-    font-size: 0.9rem;
-    color: #666;
+
+  .tag-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--df-mono);
+    font-size: var(--df-text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--df-status-live);
+    box-shadow: 0 0 0 4px rgba(60, 169, 199, 0.15);
+    flex-shrink: 0;
+  }
+  .status-dot.dev {
+    background: var(--df-status-dev);
+    box-shadow: 0 0 0 4px rgba(194, 160, 74, 0.15);
+  }
+  .status-dot.archived {
+    background: var(--df-status-archived);
+    box-shadow: 0 0 0 4px rgba(141, 160, 171, 0.18);
+  }
+  .status-label { color: var(--df-teal); }
+  .status-label.dev { color: #8C7536; }
+  .status-label.archived { color: var(--df-text-muted); }
+  .sep { color: var(--df-rule); }
+  .platform { color: var(--df-text-muted); }
+
+  .tile-name {
+    font-size: var(--df-text-lg);
+    font-weight: 600;
+    letter-spacing: var(--df-tracking-tight);
+    color: var(--df-navy);
+    line-height: 1.15;
+  }
+  .tile-desc {
+    font-size: var(--df-text-sm);
+    color: var(--df-text-muted);
+    line-height: 1.55;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.25rem;
+  }
+  .chip {
+    font-family: var(--df-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: rgba(31, 78, 102, 0.06);
+    color: var(--df-navy);
   }
 </style>

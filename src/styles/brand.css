@@ -1,0 +1,127 @@
+/**
+ * Digital Forloop — Brand Tokens
+ * v1.0 · Combine A (cream + navy/teal)
+ *
+ * Drop into your global stylesheet. Override the @import font URLs if you
+ * self-host JetBrains Mono / Space Grotesk.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ─── Color ──────────────────────────────────────────────────── */
+  --df-cream:   #F4F1EA;   /* surface */
+  --df-cream-2: #E9E4D8;   /* surface · subdued (cards, secondary bg) */
+  --df-navy:    #1F4E66;   /* primary ink — digital + brackets */
+  --df-teal:    #3CA9C7;   /* accent — forloop, highlights */
+  --df-teal-2:  #6DC5DC;   /* accent · lifted (use on dark navy bg) */
+  --df-ink:     #0B0E14;   /* body text, deep neutral */
+
+  /* Semantic aliases */
+  --df-surface:    var(--df-cream);
+  --df-surface-2:  var(--df-cream-2);
+  --df-text:       var(--df-navy);
+  --df-text-muted: rgba(31, 78, 102, 0.78);
+  --df-rule:       rgba(31, 78, 102, 0.16);
+
+  /* Status (game tiles, etc.) */
+  --df-status-live:     var(--df-teal);
+  --df-status-dev:      #C2A04A;
+  --df-status-archived: #8DA0AB;
+
+  /* ─── Typography ─────────────────────────────────────────────── */
+  --df-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace;
+  --df-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  /* Scale (ratio 1.333) */
+  --df-text-xs:   11px;
+  --df-text-sm:   13px;
+  --df-text-base: 15px;
+  --df-text-md:   18px;
+  --df-text-lg:   24px;
+  --df-text-xl:   32px;
+  --df-text-2xl:  44px;
+  --df-text-3xl:  56px;
+
+  --df-tracking-tight:  -0.025em;  /* headlines */
+  --df-tracking-mono:   -0.015em;  /* mono wordmarks */
+  --df-tracking-eyebrow: 0.28em;   /* uppercase mono labels */
+
+  /* ─── Motion ─────────────────────────────────────────────────── */
+  --df-ease:     cubic-bezier(.2, .7, .2, 1);
+  --df-ease-pop: cubic-bezier(.2, .9, .2, 1.2);
+  --df-dur-fast:  150ms;
+  --df-dur:       300ms;
+  --df-dur-slow:  600ms;
+
+  /* ─── Layout ─────────────────────────────────────────────────── */
+  --df-radius-sm: 4px;
+  --df-radius:    8px;
+  --df-radius-lg: 14px;
+  --df-radius-xl: 22%;            /* icon tile / app icon */
+
+  --df-shadow-sm: 0 4px 12px -4px rgba(31, 78, 102, 0.15);
+  --df-shadow:    0 14px 28px -10px rgba(31, 78, 102, 0.2);
+  --df-shadow-lg: 0 24px 48px -16px rgba(31, 78, 102, 0.3);
+
+  /* Container width used across reference pages */
+  --df-container: 1180px;
+}
+
+/* Recommended root styles */
+html, body {
+  background: var(--df-surface);
+  color: var(--df-text);
+  font-family: var(--df-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── The lockup ──────────────────────────────────────────────────
+ * The primary brand lockup — [digitalforloop]. Use whenever the studio
+ * name appears in HTML rather than as an <img>. Tspans would be neater
+ * in SVG but in HTML use nested spans (no whitespace between digital
+ * and forloop).
+ *
+ * Usage:
+ *   <span class="df-lockup">
+ *     <span class="df-bracket">[</span>
+ *     <span class="df-digital">digital</span><span class="df-forloop">forloop</span>
+ *     <span class="df-bracket">]</span>
+ *   </span>
+ * ─────────────────────────────────────────────────────────────── */
+
+.df-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18em;
+  font-family: var(--df-mono);
+  line-height: 1;
+}
+.df-bracket {
+  font-weight: 300;
+  font-size: 2em;
+  color: var(--df-navy);
+  line-height: 1;
+  transform: translateY(0.1em); /* visually centers bracket with word baseline */
+}
+.df-digital {
+  font-weight: 600;
+  color: var(--df-navy);
+  letter-spacing: var(--df-tracking-mono);
+}
+.df-forloop {
+  font-weight: 600;
+  color: var(--df-teal);
+  letter-spacing: var(--df-tracking-mono);
+}
+
+/* Inverted variant (for dark surfaces) */
+.df-lockup--inverted .df-bracket,
+.df-lockup--inverted .df-digital { color: var(--df-cream); }
+.df-lockup--inverted .df-forloop { color: var(--df-teal-2); }
+
+/* Mono variant (single color via currentColor) */
+.df-lockup--mono .df-bracket,
+.df-lockup--mono .df-digital,
+.df-lockup--mono .df-forloop { color: currentColor; }

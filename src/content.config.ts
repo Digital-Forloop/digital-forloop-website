@@ -17,6 +17,9 @@ const games = defineCollection({
     }).optional(),
     pressPackUrl: z.string().url(),
     releaseDate: z.date().optional(),
+    status: z.enum(['live', 'dev', 'archived']).optional(),
+    platform: z.string().optional(),
+    chips: z.array(z.string()).optional(),
   }),
 });
 

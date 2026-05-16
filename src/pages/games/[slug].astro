@@ -20,8 +20,8 @@ const { Content } = await render(game);
 <BaseLayout title={`${game.data.title} — Digital Forloop`} description={game.data.tagline} ogImage={game.data.hero}>
   <article class="game-page">
     <header class="game-header">
-      <img src={game.data.icon} alt={game.data.title} class="game-icon" width="120" height="120" loading="eager" decoding="async" />
-      <div>
+      <img src={game.data.icon} alt={game.data.title} class="game-icon" width="96" height="96" loading="eager" decoding="async" />
+      <div class="game-header-text">
         <img src="/games/pixel-soccer-manager/logo-horizontal.svg" alt={game.data.title} class="game-logo" loading="eager" decoding="async" />
         <p class="tagline">{game.data.tagline}</p>
         <StoreButtons
@@ -33,13 +33,13 @@ const { Content } = await render(game);
 
     <YouTubeEmbed videoId={game.data.youtubeId} title={game.data.title} />
 
-    <section class="description">
+    <section class="content-section">
       <h2>About</h2>
-      <p>{game.data.description}</p>
+      <p class="description">{game.data.description}</p>
       <Content />
     </section>
 
-    <section>
+    <section class="content-section">
       <h2>Screenshots</h2>
       <ScreenshotGallery
         screenshots={game.data.screenshots}
@@ -47,25 +47,24 @@ const { Content } = await render(game);
       />
     </section>
 
-    <section class="community">
+    <section class="content-section community">
       <h2>Join the Community</h2>
       <p>
         We build {game.data.title} with our players. Join our Discord to share feedback,
         vote on upcoming features, report bugs, and be part of shaping the game's future.
       </p>
-      <a href="https://discord.gg/yqCPvN6m" class="discord-btn" target="_blank" rel="noopener">
-        <img src="/badges/discord.svg" alt="Discord" class="discord-logo" width="100" height="28" loading="lazy" decoding="async" />
-        Join our Discord
+      <a href="https://discord.gg/VWWhfhj9" class="btn-primary" target="_blank" rel="noopener">
+        Join our Discord →
       </a>
     </section>
 
-    <section class="press">
+    <section class="content-section">
       <h2>Press</h2>
       <p>
         Writing about {game.data.title}? Download our press kit with
         logos, screenshots, and key art.
       </p>
-      <a href={game.data.pressPackUrl} class="press-link" target="_blank" rel="noopener">
+      <a href={game.data.pressPackUrl} class="btn-ghost" target="_blank" rel="noopener">
         Download Press Kit →
       </a>
     </section>
@@ -73,67 +72,130 @@ const { Content } = await render(game);
 </BaseLayout>
 
 <style>
-  .game-page { padding: 2rem 0; }
+  .game-page { padding: 2.5rem 0 4rem; }
+
   .game-header {
     display: flex;
     gap: 2rem;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 3rem;
     flex-wrap: wrap;
   }
   .game-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 24px;
+    width: 96px;
+    height: 96px;
+    border-radius: 20px;
+    box-shadow: var(--df-shadow);
+    flex-shrink: 0;
+  }
+  .game-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   .game-logo {
-    max-width: 320px;
+    max-width: 300px;
     height: auto;
-    margin-bottom: 0.75rem;
     display: block;
   }
   .tagline {
-    font-size: 1.25rem;
-    color: #666;
-    margin-bottom: 1rem;
+    font-size: var(--df-text-md);
+    color: var(--df-text-muted);
+    line-height: 1.4;
   }
-  section { margin: 3rem 0; }
+
+  .content-section {
+    margin: 3rem 0;
+    padding-top: 3rem;
+    border-top: 1px solid var(--df-rule);
+  }
+  .content-section:first-of-type {
+    margin-top: 0;
+  }
   h2 {
-    font-size: 1.75rem;
+    font-size: var(--df-text-xl);
+    font-weight: 700;
+    letter-spacing: var(--df-tracking-tight);
+    color: var(--df-navy);
     margin-bottom: 1rem;
   }
-  .description p {
-    font-size: 1.125rem;
+  .description {
+    font-size: var(--df-text-md);
+    color: var(--df-text-muted);
+    line-height: 1.65;
+    max-width: 72ch;
     margin-bottom: 1rem;
   }
-  .press-link {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    background: #f0f0f0;
-    border-radius: 8px;
-    text-decoration: none;
+  .content-section :global(p) {
+    font-size: var(--df-text-base);
+    color: var(--df-text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+    max-width: 72ch;
+  }
+  .content-section :global(h2) {
+    font-size: var(--df-text-lg);
+    font-weight: 600;
+    letter-spacing: var(--df-tracking-tight);
+    color: var(--df-navy);
+    margin: 2rem 0 0.5rem;
+  }
+  .content-section :global(ul) {
+    padding-left: 1.25rem;
+    color: var(--df-text-muted);
+    font-size: var(--df-text-base);
+    line-height: 1.7;
+  }
+  .content-section :global(li) {
+    margin-bottom: 0.4rem;
+  }
+  .content-section :global(strong) {
+    color: var(--df-navy);
     font-weight: 600;
   }
+
   .community p {
-    font-size: 1.125rem;
-    color: #444;
-    max-width: 600px;
+    font-size: var(--df-text-base);
+    color: var(--df-text-muted);
+    max-width: 60ch;
+    line-height: 1.65;
     margin-bottom: 1.5rem;
   }
-  .discord-btn {
+
+  .btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: #5865F2;
-    color: white;
+    background: var(--df-navy);
+    color: var(--df-cream);
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: opacity 0.15s ease;
+    border-radius: var(--df-radius-sm);
+    font-weight: 600;
+    font-size: var(--df-text-base);
+    transition: background var(--df-dur-fast) var(--df-ease);
   }
-  .discord-btn:hover { opacity: 0.9; color: white; }
-  .discord-logo { height: 22px; width: auto; filter: brightness(0) invert(1); }
+  .btn-primary:hover {
+    background: var(--df-teal);
+    color: var(--df-cream);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--df-navy);
+    border: 1px solid rgba(31, 78, 102, 0.25);
+    border-radius: var(--df-radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--df-text-base);
+    margin-top: 1rem;
+    transition: background var(--df-dur-fast) var(--df-ease), border-color var(--df-dur-fast) var(--df-ease);
+  }
+  .btn-ghost:hover {
+    background: rgba(31, 78, 102, 0.06);
+    border-color: rgba(31, 78, 102, 0.4);
+  }
 </style>

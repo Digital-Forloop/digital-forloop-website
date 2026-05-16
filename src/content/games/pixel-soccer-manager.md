@@ -15,6 +15,8 @@ screenshots:
 #   playStore: ""
 pressPackUrl: "https://example.com/puzzle-quest-press-kit.zip"
 releaseDate: 2025-11-12
+status: "live"
+platform: "iOS & Android"
 ---
 
 ## Features
