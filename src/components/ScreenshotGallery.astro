@@ -6,12 +6,16 @@ interface Props {
 const { screenshots, gameTitle } = Astro.props;
 ---
 
-<div class="gallery">
-  {screenshots.map((src, i) => (
-    <button class="gallery-item" data-src={src} data-index={i} type="button">
-      <img src={src} alt={`${gameTitle} screenshot ${i + 1}`} loading="lazy" decoding="async" />
-    </button>
-  ))}
+<div class="carousel">
+  <button class="carousel-nav carousel-prev" id="carousel-prev" type="button" aria-label="Previous screenshots" disabled>‹</button>
+  <div class="gallery" id="gallery">
+    {screenshots.map((src, i) => (
+      <button class="gallery-item" data-src={src} data-index={i} type="button">
+        <img src={src} alt={`${gameTitle} screenshot ${i + 1}`} loading="lazy" decoding="async" />
+      </button>
+    ))}
+  </div>
+  <button class="carousel-nav carousel-next" id="carousel-next" type="button" aria-label="Next screenshots">›</button>
 </div>
 
 <div class="lightbox" id="lightbox" hidden>
@@ -27,7 +31,26 @@ const { screenshots, gameTitle } = Astro.props;
   const closeBtn = document.getElementById('lightbox-close');
   const prevBtn = document.getElementById('lightbox-prev');
   const nextBtn = document.getElementById('lightbox-next');
+  const gallery = document.getElementById('gallery');
+  const carouselPrev = document.getElementById('carousel-prev');
+  const carouselNext = document.getElementById('carousel-next');
   let currentIndex = 0;
+
+  function scrollCarousel(direction) {
+    gallery.scrollBy({ left: direction * gallery.clientWidth * 0.9, behavior: 'smooth' });
+  }
+
+  function updateCarouselNav() {
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+    carouselPrev.disabled = gallery.scrollLeft <= 1;
+    carouselNext.disabled = gallery.scrollLeft >= maxScroll - 1;
+  }
+
+  carouselPrev.addEventListener('click', () => scrollCarousel(-1));
+  carouselNext.addEventListener('click', () => scrollCarousel(1));
+  gallery.addEventListener('scroll', updateCarouselNav, { passive: true });
+  window.addEventListener('resize', updateCarouselNav);
+  updateCarouselNav();
 
   function openLightbox(index) {
     currentIndex = index;
@@ -74,11 +97,25 @@ const { screenshots, gameTitle } = Astro.props;
 </script>
 
 <style>
+  .carousel {
+    position: relative;
+    margin: 2rem 0;
+  }
+
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 3 * 1.25rem) / 4);
     gap: 1.25rem;
-    margin: 2rem 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .gallery::-webkit-scrollbar {
+    display: none;
   }
 
   .gallery-item {
@@ -90,6 +127,7 @@ const { screenshots, gameTitle } = Astro.props;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    scroll-snap-align: start;
   }
 
   .gallery-item:hover {
@@ -103,6 +141,39 @@ const { screenshots, gameTitle } = Astro.props;
     object-fit: cover;
     display: block;
   }
+
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--df-navy);
+    color: var(--df-cream);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--df-shadow-sm);
+    transition: opacity 0.2s ease, background 0.2s ease;
+  }
+
+  .carousel-nav:hover {
+    background: var(--df-teal);
+  }
+
+  .carousel-nav:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .carousel-prev { left: -22px; }
+  .carousel-next { right: -22px; }
 
   .lightbox {
     position: fixed;
@@ -166,10 +237,20 @@ const { screenshots, gameTitle } = Astro.props;
   .lightbox-prev { left: 1.5rem; }
   .lightbox-next { right: 1.5rem; }
 
+  @media (max-width: 900px) {
+    .gallery {
+      grid-auto-columns: calc((100% - 2 * 1rem) / 3);
+      gap: 1rem;
+    }
+  }
+
   @media (max-width: 600px) {
     .gallery {
-      grid-template-columns: repeat(2, 1fr);
+      grid-auto-columns: 44%;
       gap: 0.75rem;
+    }
+    .carousel-nav {
+      display: none;
     }
     .lightbox-nav {
       width: 44px;
