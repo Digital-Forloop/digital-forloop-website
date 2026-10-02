@@ -10,6 +10,7 @@ const games = defineCollection({
     icon: z.string(),
     hero: z.string(),
     youtubeId: z.string(),
+    youtubeShort: z.boolean().optional(),
     screenshots: z.array(z.string()),
     storeLinks: z.object({
       appStore: z.string().url().optional(),

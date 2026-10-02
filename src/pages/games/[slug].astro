@@ -31,7 +31,7 @@ const { Content } = await render(game);
       </div>
     </header>
 
-    <YouTubeEmbed videoId={game.data.youtubeId} title={game.data.title} />
+    <YouTubeEmbed videoId={game.data.youtubeId} title={game.data.title} vertical={game.data.youtubeShort} />
 
     <section class="content-section">
       <h2>About</h2>

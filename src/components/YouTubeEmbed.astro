@@ -2,11 +2,12 @@
 interface Props {
   videoId: string;
   title: string;
+  vertical?: boolean;
 }
-const { videoId, title } = Astro.props;
+const { videoId, title, vertical = false } = Astro.props;
 ---
 
-<div class="video-wrapper">
+<div class:list={["video-wrapper", { vertical }]}>
   <iframe
     src={`https://www.youtube.com/embed/${videoId}`}
     title={`${title} trailer`}
@@ -26,6 +27,12 @@ const { videoId, title } = Astro.props;
     border-radius: 12px;
     overflow: hidden;
     background: #000;
+  }
+  .video-wrapper.vertical {
+    aspect-ratio: 9 / 16;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .video-wrapper iframe {
     position: absolute;
