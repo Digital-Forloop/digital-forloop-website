@@ -36,7 +36,7 @@ function markdownToText(md: string) {
     .trim();
 }
 
-const STATUS_LABEL = { live: 'Out now', dev: 'In development', archived: 'Archived' } as const;
+const STATUS_LABEL = { live: 'Out now', soon: 'Coming soon', dev: 'In development', archived: 'Archived' } as const;
 
 function factsheet(game: CollectionEntry<'games'>, pageUrl: string) {
   const d = game.data;
@@ -52,7 +52,7 @@ function factsheet(game: CollectionEntry<'games'>, pageUrl: string) {
     `${d.title.toUpperCase()} — FACT SHEET`,
     '',
     `Developer:      ${STUDIO}`,
-    d.releaseDate && `Release date:   ${d.releaseDate.toISOString().slice(0, 10)}`,
+    `Release date:   ${d.releaseDate ? d.releaseDate.toISOString().slice(0, 10) : 'TBC'}`,
     d.status && `Status:         ${STATUS_LABEL[d.status]}`,
     d.platform && `Platforms:      ${d.platform}`,
     `Website:        ${pageUrl}`,

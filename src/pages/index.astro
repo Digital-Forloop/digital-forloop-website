@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const games = await getCollection('games');
 
-const statusLabel = { live: 'Live', dev: 'In dev', archived: 'Archived' };
+const statusLabel = { live: 'Live', soon: 'Coming soon', dev: 'In dev', archived: 'Archived' };
 ---
 
 <BaseLayout title="Digital Forloop — Mobile Games">
@@ -157,7 +157,8 @@ const statusLabel = { live: 'Live', dev: 'In dev', archived: 'Archived' };
     box-shadow: 0 0 0 4px rgba(60, 169, 199, 0.15);
     flex-shrink: 0;
   }
-  .status-dot.dev {
+  .status-dot.dev,
+  .status-dot.soon {
     background: var(--df-status-dev);
     box-shadow: 0 0 0 4px rgba(194, 160, 74, 0.15);
   }
@@ -166,7 +167,8 @@ const statusLabel = { live: 'Live', dev: 'In dev', archived: 'Archived' };
     box-shadow: 0 0 0 4px rgba(141, 160, 171, 0.18);
   }
   .status-label { color: var(--df-teal); }
-  .status-label.dev { color: #8C7536; }
+  .status-label.dev,
+  .status-label.soon { color: #8C7536; }
   .status-label.archived { color: var(--df-text-muted); }
   .sep { color: var(--df-rule); }
   .platform { color: var(--df-text-muted); }

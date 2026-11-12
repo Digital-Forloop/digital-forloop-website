@@ -17,7 +17,7 @@ const games = defineCollection({
       playStore: z.string().url().optional(),
     }).optional(),
     releaseDate: z.date().optional(),
-    status: z.enum(['live', 'dev', 'archived']).optional(),
+    status: z.enum(['live', 'soon', 'dev', 'archived']).optional(),
     platform: z.string().optional(),
     chips: z.array(z.string()).optional(),
   }),

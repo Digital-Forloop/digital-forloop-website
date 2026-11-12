@@ -24,8 +24,8 @@ screenshots:
 # storeLinks:
 #   appStore: ""
 #   playStore: ""
-releaseDate: 2025-11-12
-status: "live"
+# releaseDate: YYYY-MM-DD  (fact sheet shows "TBC" while unset)
+status: "soon"
 platform: "iOS & Android"
 ---
 
