@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import discordIcon from '../../public/badges/discord-icon-white.svg';
+// Official YouTube icon (red) — includes YouTube's required clear space; do not crop or recolour.
+import youtubeIcon from '../../public/badges/youtube-icon-red.png';
+import { DISCORD_URL, YOUTUBE_URL } from '../config/links';
+---
+
+<div class="social-buttons">
+  <a href={DISCORD_URL} class="social-badge" target="_blank" rel="noopener">
+    <Image src={discordIcon} alt="" class="icon discord-icon" height={18} />
+    <span>Join our Discord</span>
+  </a>
+  <a href={YOUTUBE_URL} class="social-badge" target="_blank" rel="noopener">
+    <Image src={youtubeIcon} alt="" class="icon youtube-icon" height={34} />
+    <span>Watch on YouTube</span>
+  </a>
+</div>
+
+<style>
+  .social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .social-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 48px;
+    padding: 0 1.25rem;
+    background: var(--df-navy);
+    color: var(--df-cream);
+    border-radius: var(--df-radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--df-text-base);
+    transition: background var(--df-dur-fast) var(--df-ease);
+  }
+  .social-badge:hover {
+    background: var(--df-teal);
+    color: var(--df-cream);
+  }
+  .icon { display: block; width: auto; flex-shrink: 0; }
+  .discord-icon { height: 18px; }
+  /* PNG carries built-in clear space, so it is drawn larger than the Discord mark */
+  .youtube-icon { height: 34px; margin: 0 -0.35rem; }
+</style>

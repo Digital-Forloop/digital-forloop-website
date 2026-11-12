@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import StoreButtons from '../../components/StoreButtons.astro';
+import SocialButtons from '../../components/SocialButtons.astro';
 import ScreenshotGallery from '../../components/ScreenshotGallery.astro';
 import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 
@@ -54,14 +55,7 @@ const storeLinks = game.data.storeLinksPreview && import.meta.env.PROD ? undefin
         We build {game.data.title} with our players. Join our Discord to share feedback,
         vote on upcoming features, report bugs, and be part of shaping the game's future.
       </p>
-      <div class="community-links">
-        <a href="https://discord.gg/8gAjg8wY4h" class="btn-primary" target="_blank" rel="noopener">
-          Join our Discord →
-        </a>
-        <a href="https://www.youtube.com/@digitalforloop" class="btn-ghost" target="_blank" rel="noopener">
-          Watch on YouTube →
-        </a>
-      </div>
+      <SocialButtons />
     </section>
 
     <section class="content-section">
@@ -168,31 +162,6 @@ const storeLinks = game.data.storeLinksPreview && import.meta.env.PROD ? undefin
     margin-bottom: 1.5rem;
   }
 
-  .community-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
-  }
-  .community-links .btn-ghost { margin-top: 0; }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: var(--df-navy);
-    color: var(--df-cream);
-    text-decoration: none;
-    border-radius: var(--df-radius-sm);
-    font-weight: 600;
-    font-size: var(--df-text-base);
-    transition: background var(--df-dur-fast) var(--df-ease);
-  }
-  .btn-primary:hover {
-    background: var(--df-teal);
-    color: var(--df-cream);
-  }
 
   .btn-ghost {
     display: inline-flex;

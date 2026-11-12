@@ -3,10 +3,9 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { existsSync, readFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { zipSync, strToU8, type Zippable } from 'fflate';
+import { DISCORD_URL, YOUTUBE_URL } from '../../../config/links';
 
 const PRESS_EMAIL = 'contact@digitalforloop.com';
-const DISCORD_URL = 'https://discord.gg/8gAjg8wY4h';
-const YOUTUBE_URL = 'https://www.youtube.com/@digitalforloop';
 const STUDIO = 'Digital Forloop';
 const STUDIO_LOGO = '/assets/logo-horizontal.svg';
 const STUDIO_LOGO_PNG = '/assets/logo-horizontal.png';
