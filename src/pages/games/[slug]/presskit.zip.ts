@@ -6,6 +6,7 @@ import { zipSync, strToU8, type Zippable } from 'fflate';
 
 const PRESS_EMAIL = 'contact@digitalforloop.com';
 const DISCORD_URL = 'https://discord.gg/8gAjg8wY4h';
+const YOUTUBE_URL = 'https://www.youtube.com/@digitalforloop';
 const STUDIO = 'Digital Forloop';
 const STUDIO_LOGO = '/assets/logo-horizontal.svg';
 const STUDIO_LOGO_PNG = '/assets/logo-horizontal.png';
@@ -43,9 +44,10 @@ function factsheet(game: CollectionEntry<'games'>, pageUrl: string) {
   const trailer = d.youtubeShort
     ? `https://youtube.com/shorts/${d.youtubeId}`
     : `https://www.youtube.com/watch?v=${d.youtubeId}`;
+  const links = d.storeLinksPreview && import.meta.env.PROD ? undefined : d.storeLinks;
   const stores = [
-    d.storeLinks?.appStore && `App Store:      ${d.storeLinks.appStore}`,
-    d.storeLinks?.playStore && `Google Play:    ${d.storeLinks.playStore}`,
+    links?.appStore && `App Store:      ${links.appStore}`,
+    links?.playStore && `Google Play:    ${links.playStore}`,
   ].filter(Boolean);
 
   const lines = [
@@ -59,6 +61,7 @@ function factsheet(game: CollectionEntry<'games'>, pageUrl: string) {
     `Trailer:        ${trailer}`,
     ...stores,
     `Discord:        ${DISCORD_URL}`,
+    `YouTube:        ${YOUTUBE_URL}`,
     `Press contact:  ${PRESS_EMAIL}`,
     '',
     d.tagline,

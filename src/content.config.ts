@@ -16,6 +16,8 @@ const games = defineCollection({
       appStore: z.string().url().optional(),
       playStore: z.string().url().optional(),
     }).optional(),
+    // true = storeLinks are placeholders: shown in `astro dev` only, never in production builds
+    storeLinksPreview: z.boolean().optional(),
     releaseDate: z.date().optional(),
     status: z.enum(['live', 'soon', 'dev', 'archived']).optional(),
     platform: z.string().optional(),

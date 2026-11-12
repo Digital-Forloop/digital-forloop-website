@@ -20,10 +20,12 @@ screenshots:
   - "/games/pixel-soccer-manager/kit-shop.png"
   - "/games/pixel-soccer-manager/player-editor.png"
   - "/games/pixel-soccer-manager/player-shop.png"
-# Uncomment when app is live on the stores:
-# storeLinks:
-#   appStore: ""
-#   playStore: ""
+# Placeholder URLs — only shown locally (npm run dev) while storeLinksPreview is true.
+# When the real listings exist: replace the URLs and delete the storeLinksPreview line.
+storeLinksPreview: true
+storeLinks:
+  appStore: "https://google.com"
+  playStore: "https://google.com"
 # releaseDate: YYYY-MM-DD  (fact sheet shows "TBC" while unset)
 status: "soon"
 platform: "iOS & Android"

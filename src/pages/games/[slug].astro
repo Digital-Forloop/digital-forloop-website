@@ -15,6 +15,7 @@ export async function getStaticPaths() {
 
 const { game } = Astro.props;
 const { Content } = await render(game);
+const storeLinks = game.data.storeLinksPreview && import.meta.env.PROD ? undefined : game.data.storeLinks;
 ---
 
 <BaseLayout title={`${game.data.title} — Digital Forloop`} description={game.data.tagline} ogImage={game.data.hero}>
@@ -25,8 +26,8 @@ const { Content } = await render(game);
         <img src="/games/pixel-soccer-manager/logo-horizontal.svg" alt={game.data.title} class="game-logo" loading="eager" decoding="async" />
         <p class="tagline">{game.data.tagline}</p>
         <StoreButtons
-          appStore={game.data.storeLinks?.appStore}
-          playStore={game.data.storeLinks?.playStore}
+          appStore={storeLinks?.appStore}
+          playStore={storeLinks?.playStore}
         />
       </div>
     </header>
@@ -53,9 +54,14 @@ const { Content } = await render(game);
         We build {game.data.title} with our players. Join our Discord to share feedback,
         vote on upcoming features, report bugs, and be part of shaping the game's future.
       </p>
-      <a href="https://discord.gg/8gAjg8wY4h" class="btn-primary" target="_blank" rel="noopener">
-        Join our Discord →
-      </a>
+      <div class="community-links">
+        <a href="https://discord.gg/8gAjg8wY4h" class="btn-primary" target="_blank" rel="noopener">
+          Join our Discord →
+        </a>
+        <a href="https://www.youtube.com/@digitalforloop" class="btn-ghost" target="_blank" rel="noopener">
+          Watch on YouTube →
+        </a>
+      </div>
     </section>
 
     <section class="content-section">
@@ -161,6 +167,14 @@ const { Content } = await render(game);
     line-height: 1.65;
     margin-bottom: 1.5rem;
   }
+
+  .community-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .community-links .btn-ghost { margin-top: 0; }
 
   .btn-primary {
     display: inline-flex;
