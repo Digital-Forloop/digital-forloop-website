@@ -4,7 +4,7 @@ tagline: "Build your club. Set your tactics. Rise through the divisions."
 description: "Pixel Soccer Manager is a mobile football management game where every signing, formation, and half-time call is yours to make. Start at the bottom and fight your way to the top."
 icon: "/games/pixel-soccer-manager/icon.svg"
 hero: "/games/pixel-soccer-manager/match-pitch.png"
-youtubeId: "2MASg54xxh4"
+youtubeId: "38CHLu-M-qo"
 youtubeShort: true
 screenshots:
   - "/games/pixel-soccer-manager/save-slot.png"
